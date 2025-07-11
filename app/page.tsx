@@ -10,7 +10,7 @@ import {
   IconVideo,
   IconUsers,
   IconChartBar,
-  IconPlay,
+  IconPlayerPlay,
   IconDownload,
 } from "@tabler/icons-react";
 import { useSession } from "next-auth/react";
@@ -41,7 +41,7 @@ export default function Home() {
     {
       title: "High-Quality Streaming",
       description: "Stream videos in HD with adaptive quality",
-      icon: <IconPlay className="h-8 w-8 text-red-500" />,
+      icon: <IconPlayerPlay className="h-8 w-8 text-red-500" />,
       className: "md:col-span-2",
     },
   ];
@@ -100,7 +100,7 @@ export default function Home() {
           >
             {[
               { number: "10K+", label: "Videos Uploaded", icon: <IconVideo className="h-8 w-8" /> },
-              { number: "50M+", label: "Total Views", icon: <IconPlay className="h-8 w-8" /> },
+              { number: "50M+", label: "Total Views", icon: <IconPlayerPlay className="h-8 w-8" /> },
               { number: "1M+", label: "Downloads", icon: <IconDownload className="h-8 w-8" /> },
             ].map((stat, index) => (
               <div key={index} className="text-center">
