@@ -116,6 +116,8 @@ export default function Home() {
               </div>
             ))}
           </motion.div>
+  );
+}
 
           {/* Features Section */}
           <motion.div
@@ -175,6 +177,25 @@ export default function Home() {
               </div>
             </motion.div>
           )}
+// export default function Home() {
+//   return (
+//     <div>
+//       <form>
+//         <input type="file" />
+//       </form>
+//       {/* <Video
+//         className="fixed top-0 left-0 w-full h-full object-cover z-[-1]"
+//         urlEndpoint="https://ik.imagekit.io/fnwhfnpzm"
+//         src="/sample-video.mp4"
+//         width={500}
+//         height={500}
+//         autoPlay = {false}
+//         loop
+//         muted
+//       /> */}
+//     </div>
+//   );
+// }
 
           {/* CTA Section */}
           {!session && (
@@ -207,5 +228,3 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );
-}
