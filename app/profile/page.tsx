@@ -11,7 +11,7 @@ import {
   IconSettings,
   IconCamera,
   IconEdit,
-  IconSave,
+  // IconSave,
   IconX,
   IconShield,
   IconBell,
@@ -141,7 +141,7 @@ const Profile = () => {
                               onClick={handleSave}
                               className="btn btn-success btn-sm"
                             >
-                              <IconSave className="h-4 w-4 mr-2" />
+                              {/* <IconSave className="h-4 w-4 mr-2" /> */}
                               Save
                             </button>
                             <button
