@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
-import { cache } from "react";
 
-const MOONGODB_URI = process.env.MOONGODB_URI!
+const MONGODB_URI = process.env.MONGODB_URI!
 
-if (!MOONGODB_URI) {
-    throw new Error("Invalid/Missing environment variable: 'MOONGODB_URI'")
+if (!MONGODB_URI) {
+    throw new Error("Invalid/Missing environment variable: 'MONGODB_URI'")
 }
 
 let cached = global.mongoose
@@ -19,7 +18,7 @@ export async function connectDatabase () {
     }
     if (!cached.promise){
          mongoose
-         .connect(MOONGODB_URI)
+         .connect(MONGODB_URI)
          .then(()=> {
             mongoose.connection;
         })

@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@imagekit/next": "^2.1.2",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^6.0.0",
+    "dotenv": "^17.0.1",
     "mongoose": "^8.16.0",
     "next": "15.3.3",
     "next-auth": "^4.24.11",
@@ -19,13 +21,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "daisyui": "^5.0.46",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5"
   }
 }
