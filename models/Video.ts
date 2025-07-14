@@ -3,7 +3,7 @@ import mongoose, { model, models, Schema } from 'mongoose';
 export const Video_Dimensions = {
     height: 1080,
     weight: 1920
-} as const
+} as const;
 
 export interface IVideo {
     _id?: mongoose.Types.ObjectId,
@@ -15,7 +15,7 @@ export interface IVideo {
     transformation?: {
         height: number;
         width: number;
-        fps?: number
+        fps?: number;
         quality?: number;
     },
     duration?: number;
@@ -31,13 +31,13 @@ const videoSchema = new Schema<IVideo>({
     transformation: {
         height: { type: Number, default: Video_Dimensions.height },
         width: { type: Number, default: Video_Dimensions.weight },
-        fps: { type: Number, required: true },
+        fps: { type: Number, required: true, default: 30 },
         quality: { type: Number, min: 1, max: 100 },
     }
 },
     { timestamps: true, }
 )
 
-const Video = models?.Video || model("Video", videoSchema);
+const Video = models?.Video || model<IVideo>("Video", videoSchema);
 
 export default Video;

@@ -1,7 +1,7 @@
 import mongoose, { model, models, Schema } from 'mongoose';
 import bcrypt from "bcryptjs";
 
-export interface User {
+export interface IUser {
     email: string;
     password: string;
     _id?: mongoose.Types.ObjectId;
@@ -9,7 +9,7 @@ export interface User {
     updatedAt?: Date;
 }
 
-const userSchema = new Schema <User>({
+const userSchema = new Schema <IUser>({
     email: { type: String, required: true },
     password: { type: String, required: true },
     // _id: mongoose.Types.ObjectId,
@@ -18,6 +18,7 @@ const userSchema = new Schema <User>({
         timestamps: true,
     },
 )
+// For NEXTjs because it have edge servers 
 
 userSchema.pre("save", async function (next){
     if(this.isModified("password")){
@@ -26,6 +27,6 @@ userSchema.pre("save", async function (next){
 });
 
 
-const User = models?.User || model<User>("User", userSchema);
+const User = models?.User || model<IUser>("User", userSchema);
 
 export default User;

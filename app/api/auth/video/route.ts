@@ -1,8 +1,8 @@
-import Video, { IVideo } from "@/models/Video";
-import { authOptions } from "@/app/utils/auth";
-import { connectDatabase } from "@/app/utils/db";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { connectDatabase } from "@/app/utils/db";
+import { authOptions } from "@/app/utils/auth";
+import Video, { IVideo } from "@/models/Video";
 
 
 export async function GET() {
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
         }
         const videoData = {
             ...body,
-            controls: body?.constrols ?? true,
+            controls: body?.controls ?? true,
             transformation: {
                 height: body?.transformation?.height ?? 1080,
                 width: body?.transformation?.width ?? 1920,

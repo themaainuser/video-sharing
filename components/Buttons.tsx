@@ -35,8 +35,7 @@ export default function loginButton({
   children,
   type,
   onClick,
-  className,
-}: ComponentType) {
+  className, }: ComponentType) {
   return (
     <button
       type= { type }

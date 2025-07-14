@@ -1,6 +1,6 @@
 // SvgIcon.tsx
 import React from 'react';
-import { iconMap } from './icon';
+import { iconMap } from './Icon';
 
 export type IconName = keyof typeof iconMap;
 

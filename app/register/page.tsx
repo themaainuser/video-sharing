@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { LoginForm } from "@/components/LoginForm";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -35,19 +36,28 @@ const RegisterPage = () => {
       console.error(err);
     }
   };
-// react-ruery
-// debounce, error, loading
+  // react-ruery
+  // debounce, error, loading
   return (
     <div>
+       <LoginForm
+            email={email}
+            password={password}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            onSubmit={handelSubmit}
+          />
       <h1>Register</h1>
       <form onSubmit={handelSubmit}>
         <input
+          required
           value={email}
           type="email"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
         />
         <input
+          required
           value={password}
           type="password"
           onChange={(e) => setPassword(e.target.value)}

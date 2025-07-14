@@ -1,12 +1,6 @@
 "use client"; // This component must be a client component
-// fullstackimagekit\components\fileUpload.tsx
-import {
-  ImageKitAbortError,
-  ImageKitInvalidRequestError,
-  ImageKitServerError,
-  ImageKitUploadNetworkError,
-  upload,
-} from "@imagekit/next";
+
+import { upload } from "@imagekit/next";
 import React, { useRef, useState } from "react";
 
 interface FileUploadProps {
@@ -52,7 +46,6 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
       const auth = await authRes.json();
 
       const { token, expire, signature } = auth.authenticationParameters;
-      // const publicKey = auth.publicKey;
 
       const res = await upload({
         file,
