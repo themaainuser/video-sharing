@@ -31,12 +31,12 @@ export const authOptions: NextAuthOptions = {
                     console.log(typeof userPassword + " & " + userPassword)
 
                     if (!user) {
-                        throw new Error("No user found with this");
+                        throw new Error("No user found with this email");
                     }
 
                     const isValid = await bcrypt.compare(
                         credentials.password,
-                        userPassword.password
+                        user.password
                     );
                     if (!isValid) {
                         throw new Error("Invalid Password")

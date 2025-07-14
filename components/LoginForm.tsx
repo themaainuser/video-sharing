@@ -9,9 +9,15 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Bricolage_Grotesque } from "next/font/google";
 import { signIn } from "next-auth/react";
+import Google from "next-auth/providers/google";
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-bricolage",
+});
 
 type LoginFormProps = {
   email: string;
@@ -19,6 +25,7 @@ type LoginFormProps = {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  errorMessage?: string;
   className?: string;
 };
 
@@ -28,6 +35,7 @@ export function LoginForm({
   setEmail,
   setPassword,
   onSubmit,
+  errorMessage,
   className,
   ...props
 }: LoginFormProps) {
@@ -42,7 +50,8 @@ export function LoginForm({
         </CardHeader>
         <CardContent>
           <form onSubmit={onSubmit}>
-            <div className="grid gap-6">
+           <div className={bricolage.className}>
+             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
                 <Button variant="outline" className="w-full">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -61,6 +70,7 @@ export function LoginForm({
                     />
                   </svg>
                   Login with Google
+                  {/* <Google>{}</Google> */}
                 </Button>
               </div>
               <div className="relative flex items-center text-sm text-muted-foreground">
@@ -68,6 +78,11 @@ export function LoginForm({
                 <span className="px-2 bg-card z-10">Or continue with</span>
                 <div className="flex-grow border-t border-border" />
               </div>
+              {errorMessage && (
+                <div className="font-bold text-red-500 text-lg mb-1 ">
+                  {errorMessage}
+                </div>
+              )}
               <div className="grid gap-6">
                 <div className="grid gap-3">
                   <Label htmlFor="email">Email</Label>
@@ -75,8 +90,9 @@ export function LoginForm({
                     id="email"
                     type="email"
                     placeholder="me@example.com"
-                    required
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="grid gap-3">
@@ -92,36 +108,18 @@ export function LoginForm({
                   <Input
                     id="password"
                     type="password"
-                    required
+                    placeholder="Password"
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
                 <Button type="submit" className="w-full btn-link">
                   Login
                 </Button>
               </div>
-
-              <Input
-                id="email"
-                type="email"
-                placeholder="me@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <Input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-
-              <Button type="submit" className="w-full">
-                Login
-              </Button>
             </div>
+           </div>
           </form>
         </CardContent>
       </Card>

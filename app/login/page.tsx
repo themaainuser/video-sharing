@@ -8,6 +8,7 @@ import { LoginForm } from "@/components/LoginForm";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -26,11 +27,14 @@ const LoginPage = () => {
         redirect: false,
       });
       if (result?.error) {
+        setErrorMessage(result.error);
         return console.log(result.error);
       } else {
+        setErrorMessage(null);
         router.push("/");
       }
     } catch (err) {
+      setErrorMessage("An error occurred while signing in. Please try again.");
       console.error(err);
     }
   };
@@ -48,17 +52,17 @@ const LoginPage = () => {
             setEmail={setEmail}
             setPassword={setPassword}
             onSubmit={handelSubmit}
+            errorMessage={ errorMessage! }
           />
         </div>
-        <button
+        {/* <button
           className="btn btn-link"
           onClick={() => router.push("/register")}
-        >
-          Register
-        </button>
+        > Register  </button>
+
         <button onClick={() => router.push("/forgot-password")}>
           Forgot Password
-        </button>
+        </button> */}
       </div>
     </div>
   );
