@@ -2,6 +2,13 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+// React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+// This is the long-form version of the same thing | React.ComponentProps<"input"> | It does the same job but in a more verbose way.
+
+// This form is useful if:
+// You're doing something more complex (like extending custom interfaces or working with raw DOM nodes).
+// You want fine-grained control over the element type and its attributes.
+
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <input

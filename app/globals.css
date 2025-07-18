@@ -7,6 +7,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* @layer base {
+  body {
+    @apply bg-[#242222] text-white;
+  }
+} */
+
 /* @custom-variant dark (&:is(.dark *)); */
 /* @plugin "daisyui"; */
 

@@ -9,7 +9,11 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false); 
 
+  console.log(`Header log of session: ${session} `)
+
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -20,24 +24,24 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-[#242222] shadow-xl text-white">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo/Brand */}
         <Link href="/" className="text-xl font-bold">ImageKit</Link>
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          <Link href="/" className={`${pathname === "/" ? "text-blue-600" : "text-gray-700"} hover:text-blue-500`}>
+          <Link href="/" className={`${pathname === "/" ? "text-blue-600" : "text-white"} hover:text-blue-500`}>
             Home
           </Link>
           
           {/* Show these links only when user is logged in */}
           {status === "authenticated" && (
             <>
-              <Link href="/dashboard" className={`${pathname === "/dashboard" ? "text-blue-600" : "text-gray-700"} hover:text-blue-500`}>
+              <Link href="/dashboard" className={`${pathname === "/dashboard" ? "text-blue-600" : "text-white"} hover:text-blue-500`}>
                 Dashboard
               </Link>
-              <Link href="/profile" className={`${pathname === "/profile" ? "text-blue-600" : "text-gray-700"} hover:text-blue-500`}>
+              <Link href="/profile" className={`${pathname === "/profile" ? "text-blue-600" : "text-white"} hover:text-blue-500`}>
                 Profile
               </Link>
             </>
@@ -91,7 +95,7 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-gray-700 focus:outline-none" 
+          className="md:hidden text-white focus:outline-none" 
           onClick={toggleMenu}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -104,13 +108,13 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu */} 
       {isMenuOpen && (
-        <div className="md:hidden bg-white px-4 py-3 shadow-md">
+        <div className="md:hidden bg-[#242222]px-4 py-3 shadow-md">
           <div className="flex flex-col space-y-3">
             <Link 
               href="/" 
-              className={`${pathname === "/" ? "text-blue-600" : "text-gray-700"} hover:text-blue-500 py-2`}
+              className={`${pathname === "/" ? "text-blue-600" : "text-white"} hover:text-blue-500 py-2`}
               onClick={() => setIsMenuOpen(false)}
             >
               Home
@@ -121,14 +125,14 @@ export default function Header() {
               <>
                 <Link 
                   href="/dashboard" 
-                  className={`${pathname === "/dashboard" ? "text-blue-600" : "text-gray-700"} hover:text-blue-500 py-2`}
+                  className={`${pathname === "/dashboard" ? "text-blue-600" : "text-white"} hover:text-blue-500 py-2`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <Link 
                   href="/profile" 
-                  className={`${pathname === "/profile" ? "text-blue-600" : "text-gray-700"} hover:text-blue-500 py-2`}
+                  className={`${pathname === "/profile" ? "text-blue-600" : "text-white"} hover:text-blue-500 py-2`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Profile
