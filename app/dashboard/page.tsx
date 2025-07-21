@@ -1,7 +1,11 @@
+import { Container } from "@/components/container";
+
 const dashBoard = () => {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className="layout">
+      <Container>
+        Dashboard
+      </Container>
     </div>
   )
 }

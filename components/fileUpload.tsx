@@ -58,7 +58,9 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
         // Progress callback to update upload progress state
         onProgress: (event) => {
             if(event.lengthComputable && onProgress){
-                onProgress(Math.round(event.loaded / event.total * 100));
+                const progressValue = Math.round(event.loaded / event.total * 100);
+                setProgress(progressValue);
+                onProgress(progressValue);
             }
         },
         // Abort signal to allow cancellation of the upload if needed.
@@ -73,14 +75,25 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
   };
   return (
     <>
-      <input
+      <input 
+        className="cursor-pointer bg-[#1576ff] text-white rounded-md px-4 py-2"
         type="file"
         accept={fileType === "video" ? "video/*" : "image/*"}
         onChange={handleFileChange}
       />
-      {progress && <span>loading...</span>}
       <br />
-      Upload progress: <progress value={progress} max={100}></progress>
+      {progress > 0 && (
+        <div className="mt-4">
+          <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+            <div 
+              className="bg-blue-600 h-2.5 rounded-full transition-all duration-300 ease-out"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <p className="text-sm mt-1">{progress}% uploaded</p>
+        </div>
+      )}
+      {error && <p className="text-red-500 mt-2">{error}</p>}
     </>
   );
 };

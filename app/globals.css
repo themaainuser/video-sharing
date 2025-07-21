@@ -7,6 +7,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+.layout {
+height: 100vh;
+background-image: linear-gradient(to bottom,
+white, #dbeafe, white );
+
+} 
+
 /* @layer base {
   body {
     @apply bg-[#242222] text-white;

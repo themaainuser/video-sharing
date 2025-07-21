@@ -54,6 +54,11 @@ const LoginPage = () => {
             onSubmit={handelSubmit}
             errorMessage={ errorMessage! }
           />
+         <div className="opacity-50">
+           Test id: mycomuvy@polkaroad.net
+          <br></br>
+          Test password: mycomuvy@polkaroad.net
+         </div>
         </div>
         {/* <button
           className="btn btn-link"

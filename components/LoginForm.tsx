@@ -35,10 +35,10 @@ export function LoginForm({
   const pathname = usePathname();
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card className="shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.04),0_2px_3px_rgba(0,0,0,0.04)]">
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>
-          <CardDescription>Login with your Google account</CardDescription>
+          <CardDescription>Login with your account</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={onSubmit}>
@@ -123,7 +123,13 @@ export function LoginForm({
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full btn-link text-lg">
+                  <Button
+                    type="submit"
+                    className={cn(
+                      "w-full btn-link text-lg",
+                      "shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.04),0_2px_3px_rgba(0,0,0,0.04)]"
+                    )}
+                  >
                     Login
                   </Button>
                 </div>
