@@ -44,6 +44,9 @@ export default function Header() {
               <Link href="/profile" className={`${pathname === "/profile" ? "text-blue-600" : "text-white"} hover:text-blue-500`}>
                 Profile
               </Link>
+              <Link href="/upload" className={`${pathname === "/upload" ? "text-blue-600" : "text-white"} hover:text-blue-500`}>
+                Upload
+              </Link>
             </>
           )}
         </nav>
@@ -137,6 +140,11 @@ export default function Header() {
                 >
                   Profile
                 </Link>
+                 <Link href="/upload" className={`${pathname === "/upload" ? "text-blue-600" : "text-white"} hover:text-blue-500`}
+                 onClick={() => setIsMenuOpen(false)}
+                >
+                Upload
+              </Link>
               </>
             )}
 

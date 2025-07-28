@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { LoginForm } from "@/components/LoginForm";
+import { LoginForm } from "@/app/components/LoginForm";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -40,10 +40,10 @@ const LoginPage = () => {
   };
   return (
     // <div className="card justify-center items-center w-96 h-96 ">
-    <div className="card justify-center items-center h-screen bg-base-100 shadow-xl">
+    <div className="card bg-base-100 h-screen items-center justify-center shadow-xl">
       <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
         <div className="flex w-full max-w-sm flex-col gap-6">
-          <h1 className="flex items-center gap-2 self-center font-medium text-2xl">
+          <h1 className="flex items-center gap-2 self-center text-2xl font-medium">
             Login
           </h1>
           <LoginForm
@@ -52,13 +52,13 @@ const LoginPage = () => {
             setEmail={setEmail}
             setPassword={setPassword}
             onSubmit={handelSubmit}
-            errorMessage={ errorMessage! }
+            errorMessage={errorMessage!}
           />
-         <div className="opacity-50">
-           Test id: mycomuvy@polkaroad.net
-          <br></br>
-          Test password: mycomuvy@polkaroad.net
-         </div>
+          <div className="opacity-50">
+            Test id: mycomuvy@polkaroad.net
+            <br></br>
+            Test password: mycomuvy@polkaroad.net
+          </div>
         </div>
         {/* <button
           className="btn btn-link"

@@ -31,7 +31,6 @@ const videoSchema = new Schema<IVideo>({
     transformation: {
         height: { type: Number, default: Video_Dimensions.height },
         width: { type: Number, default: Video_Dimensions.weight },
-        fps: { type: Number, required: true, default: 30 },
         quality: { type: Number, min: 1, max: 100 },
     }
 },

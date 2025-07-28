@@ -1,14 +1,14 @@
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/app/components/ui/card";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -74,14 +74,14 @@ export function LoginForm({
                     Login with Google
                   </Button>
                 </div>
-                <div className="relative flex items-center text-sm text-muted-foreground">
-                  <div className="flex-grow border-t border-border" />
-                  <span className="px-2 bg-card z-10">Or continue with</span>
-                  <div className="flex-grow border-t border-border" />
+                <div className="text-muted-foreground relative flex items-center text-sm">
+                  <div className="border-border flex-grow border-t" />
+                  <span className="bg-card z-10 px-2">Or continue with</span>
+                  <div className="border-border flex-grow border-t" />
                 </div>
                 {/* Show error */}
                 {errorMessage && (
-                  <div className="font-bold text-red-500 text-lg mb-1 ">
+                  <div className="mb-1 text-lg font-bold text-red-500">
                     {errorMessage}
                   </div>
                 )}
@@ -104,7 +104,7 @@ export function LoginForm({
                     https://medium.com/@sumsourabh14/how-i-created-a-password-reset-flow-in-next-js-012490edb801 */}
                       <a
                         href="/forgetpassword"
-                        className="ml-auto text-sm underline-offset-4  hover:text-gray-600 underline"
+                        className="ml-auto text-sm underline underline-offset-4 hover:text-gray-600"
                       >
                         Forgot your password?
                         {/* <Link
@@ -126,8 +126,8 @@ export function LoginForm({
                   <Button
                     type="submit"
                     className={cn(
-                      "w-full btn-link text-lg",
-                      "shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.04),0_2px_3px_rgba(0,0,0,0.04)]"
+                      "btn-link w-full text-lg",
+                      "shadow-[0_1px_1px_rgba(0,0,0,0.05),0_4px_6px_rgba(34,42,53,0.04),0_24px_68px_rgba(47,48,55,0.04),0_2px_3px_rgba(0,0,0,0.04)]",
                     )}
                   >
                     Login

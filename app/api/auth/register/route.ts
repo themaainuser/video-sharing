@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
                 { status: 400 }
             )
         }
-        connectDatabase()
+        await connectDatabase()
         const existingUser = await User.findOne({ email })
         if (existingUser) {
             return NextResponse.json(

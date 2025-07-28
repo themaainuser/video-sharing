@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Providers from "@/components/Providers";
+import Providers from "@/app/components/Providers";
 import { Bricolage_Grotesque } from "next/font/google";
 
 const bricolage = Bricolage_Grotesque({
@@ -33,10 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bricolage.className}`}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <Providers>
-        {children}
-      </Providers>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

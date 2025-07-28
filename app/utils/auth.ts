@@ -27,9 +27,6 @@ export const authOptions: NextAuthOptions = {
                     const user = await User.findOne({
                         email: credentials.email
                     })
-                    const userPassword = await User.findOne({ email: credentials.email }).select("password");
-                    // console.log(typeof userPassword + " & " + userPassword)
-
                     if (!user) {
                         throw new Error("No user found with this email");
                     }

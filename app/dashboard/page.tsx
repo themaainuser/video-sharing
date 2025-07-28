@@ -1,13 +1,11 @@
-import { Container } from "@/components/container";
+import { Container } from "@/app/components/container";
 
 const dashBoard = () => {
   return (
     <div className="layout">
-      <Container>
-        Dashboard
-      </Container>
+      <Container>Dashboard</Container>
     </div>
-  )
-}
+  );
+};
 
-export default dashBoard
+export default dashBoard;

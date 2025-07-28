@@ -1,9 +1,10 @@
+// fullstackimagekit\app\api\auth\video\route.ts
+
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { connectDatabase } from "@/app/utils/db";
 import { authOptions } from "@/app/utils/auth";
 import Video, { IVideo } from "@/models/Video";
-
 
 export async function GET() {
     try {
@@ -27,29 +28,34 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+    console.log("▶️ POST /api/auth/video triggered");
+    console.log("Request Headers:", req.headers);
+
     try {
-        const session = await getServerSession(authOptions);
-        if (!session) { return NextResponse.json({ error: "Unauthorized", },
-            { status: 401, })
-        }
+        // const session = await getServerSession(authOptions);
+        // if (!session) {
+        //     return NextResponse.json({ error: "Unauthorized", },
+        //         { status: 401, })
+        // }
         await connectDatabase()
         const body: IVideo = await req.json()
-        if (!body.title ||
-            !body.description ||
-            !body.videoUrl ||
-            !body.thumbnailUrl) {
-            return NextResponse.json(
-                { error: "Missing Fields", },
-                { status: 400, }
-            )
-        }
+        console.log("Received POST request");
+        console.log("Request Body:", body);
+        // if (!body.title ||
+        //     !body.description ||
+        //     !body.videoUrl ||
+        //     !body.thumbnailUrl) {
+        //     return NextResponse.json(
+        //         { error: "Missing Fields", },
+        //         { status: 400, }
+        //     )
+        // }
         const videoData = {
             ...body,
             controls: body?.controls ?? true,
             transformation: {
                 height: body?.transformation?.height ?? 1080,
                 width: body?.transformation?.width ?? 1920,
-                fps: body?.transformation?.fps ?? 30,
                 quality: body.transformation?.quality ?? 100,
             },
         }
