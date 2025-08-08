@@ -17,7 +17,7 @@ export default withAuth(
                 if (pathname === "/" || pathname === "/api/videos") {
                     return true;
                 }
-                console.log(`middleware log of token: ${token} `)
+                // console.log(`middleware log of token: ${token} `)
                 return !!token;
             }
             // authorized({ req, token }) {

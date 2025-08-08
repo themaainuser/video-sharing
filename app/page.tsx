@@ -1,70 +1,89 @@
 "use client";
 
-import Header from "@/app/components/Header";
-import VideoComponent from "./components/VideoComponent";
-import { Video } from "@imagekit/next";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useState } from "react";
+import { buildSrc, Video } from "@imagekit/next";
+import { useSession, signIn } from "next-auth/react";
+import { apiClient } from "./utils/api-client";
+import { useEffect, useState } from "react";
+import { IVideo } from "@/models/Video";
+import { motion } from "motion/react";
 
 export default function Home() {
   const { data: session, status } = useSession();
-  const uploadedVideos = [
-    "https://ik.imagekit.io/sfzdeip2u/Nayak_Amrish_Puri_GIF_-_Nayak_Amrish_Puri_Chupp_-_Discover___Share_GIFs__nayak-amrish-puri-chupp-bolti-band-mani-nahi-bolunga-gif-18754360__AyGkRKMkB1.mp4?updatedAt=1753465309007",
-    "https://ik.imagekit.io/sfzdeip2u/Video_Ready_Sparkling_Toast_V9kfvCT4KF.mp4?updatedAt=1753426426089",
-    "https://ik.imagekit.io/sfzdeip2u/Video_Ready_Sparkling_Toast_V9kfvCT4KF.mp4?updatedAt=1753426426089",
-    "https://ik.imagekit.io/sfzdeip2u/Video_Ready_Toast_and_Ruby_SZMwoAVaKu.mp4?updatedAt=1753294343194",
-    "https://ik.imagekit.io/sfzdeip2u/Video_Ready_Toast_and_Ruby_SZMwoAVaKu.mp4?updatedAt=1753294343194",
-    "https://ik.imagekit.io/sfzdeip2u/Video_Ready_Toast_and_Ruby_SZMwoAVaKu.mp4?updatedAt=1753294343194",
-  ];
+  const [videos, setVideos] = useState<IVideo[]>([]);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await apiClient.getVideos();
+        const data = await response.json();
+        setVideos(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchVideos();
+  }, []);
 
   if (status === "loading") {
-    return <p className="text-center text-gray-500">Loading...</p>;
+    return (
+      <p className="flex h-screen items-center justify-center text-center text-neutral-600">
+        Loading...
+      </p>
+    );
   }
   return (
-    <>
+    <div className="h-[200vh] bg-neutral-100 p-4">
       {session ? (
         <>
-          <Header />
-          {/* TEST */}
-          {uploadedVideos.length > 0 && (
+          {videos.length > 0 && (
             <div className="rounded-lg">
-              <h2 className="mt-2 mb-4 text-center text-2xl font-bold">
+              <h2 className="mb-4 pt-10 text-center text-2xl font-bold">
                 Your Videos
               </h2>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {uploadedVideos.map((video, index) => (
-                  <div
-                    key={video || index}
-                    className="overflow-hidden rounded-md border bg-amber-200 shadow-md"
+              <div className="grid grid-cols-1 gap-4 p-2 md:grid-cols-2 lg:grid-cols-3">
+                {videos.map((video, index) => (
+                  <motion.div
+                    initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+                    whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                    // whileHover={{
+                    //   scale: 1.03,
+                    //   transition: {
+                    //     duration: 0.3,
+                    //     ease: "easeInOut",
+                    //   },
+                    // }}
+                    transition={{
+                      duration: 0.35,
+                      // delay: index * 0.2,
+                      delay: index * 0.12,
+                      ease: "easeInOut",
+                    }}
+                    key={video._id?.toString() || index}
+                    className="overflow-hidden rounded-md bg-neutral-50 transition duration-200 hover:scale-[1.02]"
                   >
-                    <div className="p-2">
+                    <div className="p-1">
                       <Video
-                        // urlEndpoint="https://ik.imagekit.io/fnwhfnpzm"
-                        // urlEndpoint="https://ik.imagekit.io/sfzdeip2u"
-                        src={video}
+                        className="aspect-[16/9] rounded-b-lg bg-neutral-50 shadow-xl"
+                        src={video.videoUrl}
                         width={690}
                         height={690}
-                        controls={true}
+                        // width={video.transformation?.width}
+                        // height={video.transformation?.height}
+                        controls={video.controls}
+                        poster={buildSrc({
+                          urlEndpoint: "https://ik.imagekit.io/sfzdeip2u",
+                          src: `${video.videoUrl}/ik-thumbnail.jpg?tr=so-10`,
+                        })}
                       />
                     </div>
-                    <p className="my-1 flex justify-center truncate font-medium">{`video.name`}</p>
-                  </div>
+                    <p className="my-1 flex truncate pl-2 font-medium">
+                      {video.title}
+                    </p>
+                  </motion.div>
                 ))}
               </div>
             </div>
           )}
-          {/* <div className="bg-red-500">
-            <Video
-              // urlEndpoint="https://ik.imagekit.io/fnwhfnpzm"
-              // urlEndpoint="https://ik.imagekit.io/sfzdeip2u"
-              src={
-                "https://ik.imagekit.io/sfzdeip2u/Nayak_Amrish_Puri_GIF_-_Nayak_Amrish_Puri_Chupp_-_Discover___Share_GIFs__nayak-amrish-puri-chupp-bolti-band-mani-nahi-bolunga-gif-18754360__AyGkRKMkB1.mp4?updatedAt=1753465309007"
-              }
-              width={440}
-              height={440}
-              controls={true}
-            />
-          </div> */}
         </>
       ) : (
         <div className="text-center text-4xl text-red-500">
@@ -72,6 +91,6 @@ export default function Home() {
           <button onClick={async () => await signIn()}>Sign in</button>
         </div>
       )}
-    </>
+    </div>
   );
 }

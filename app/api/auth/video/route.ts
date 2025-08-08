@@ -1,10 +1,11 @@
 // fullstackimagekit\app\api\auth\video\route.ts
+/* eslint-disable */
 
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
 import { connectDatabase } from "@/app/utils/db";
-import { authOptions } from "@/app/utils/auth";
 import Video, { IVideo } from "@/models/Video";
+// import { getServerSession } from "next-auth";
+// import { authOptions } from "@/app/utils/auth";
 
 export async function GET() {
     try {
@@ -41,15 +42,16 @@ export async function POST(req: NextRequest) {
         const body: IVideo = await req.json()
         console.log("Received POST request");
         console.log("Request Body:", body);
-        // if (!body.title ||
-        //     !body.description ||
-        //     !body.videoUrl ||
-        //     !body.thumbnailUrl) {
-        //     return NextResponse.json(
-        //         { error: "Missing Fields", },
-        //         { status: 400, }
-        //     )
-        // }
+        if (!body.title ||
+            // !body.description ||
+            // !body.thumbnailUrl ||
+            !body.videoUrl
+        ) {
+            return NextResponse.json(
+                { error: "Missing Fields", },
+                { status: 400 }
+            )
+        }
         const videoData = {
             ...body,
             controls: body?.controls ?? true,

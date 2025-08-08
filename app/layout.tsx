@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Providers from "@/app/components/Providers";
-import { Bricolage_Grotesque } from "next/font/google";
+import Header from "./components/Navbar/Header";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -35,7 +35,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          {" "}
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { IVideo } from "@/models/Video"
 
 export type VideoFormData = Omit<IVideo, "_id">
@@ -32,7 +34,7 @@ class ApiClient {
         return response.json()
     }
     async getVideos() {
-        return fetch("http://localhost:3000/api/auth/videos")
+        return fetch("http://localhost:3000/api/auth/video")
     }
     async createVideos(videoData: VideoFormData) {
         return this.fetch("/auth/video", {
@@ -40,7 +42,15 @@ class ApiClient {
             body: videoData
         })
     }
-
+    async getAllVideos() {
+        return this.fetch<IVideo[]>(`/auth/video`)
+    }
+    async updateVideo(id: string, videoData: VideoFormData) {
+        return this.fetch<IVideo>(`/auth/video/${id}`, {
+            method: "UPDATE",
+            body: videoData
+        })
+    }
 }
 
 export const apiClient = new ApiClient();
