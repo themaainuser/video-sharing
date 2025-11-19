@@ -14,20 +14,19 @@ export async function GET() {
     });
 
     if (!authenticationParameters) {
-      throw new Error("Failed to fetch authentication parameters");
+      throw new Error("Failed to fetch Authentication parameters");
     }
-
-    console.log(authenticationParameters + "auth log");
 
     return Response.json({
       authenticationParameters,
       publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY!,
     }, {
+      statusText: "ImageKit Authentication SuccessFull",
       status: 200,
     });
 
   } catch (error) {
-    console.log("ImageKit Auth Error:", error);
+    console.log("ImageKit Auth Error: ", error);
     return Response.json(
       { error: "Internal Server Error" },
       { status: 500 }

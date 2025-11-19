@@ -53,12 +53,14 @@ export default function Header({ className }: { className?: string }) {
           ImageKit
         </Link>
 
-        <nav className="hidden items-center space-x-6 md:flex">
-          <NavigationLinks
-            pathname={pathname}
-            isAuthenticated={status === "authenticated"}
-          />
-        </nav>
+        {session?.user.email && (
+          <nav className="hidden items-center space-x-6 md:flex">
+            <NavigationLinks
+              pathname={pathname}
+              isAuthenticated={status === "authenticated"}
+            />
+          </nav>
+        )}
 
         <div className="hidden items-center space-x-4 md:flex">
           <AuthButtons

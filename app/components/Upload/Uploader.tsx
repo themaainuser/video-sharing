@@ -1,16 +1,36 @@
 "use client";
 import { useCallback } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
+import { Button } from "../ui/button";
+import { Card, CardContent } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { Toaster, toast } from "sonner";
 import { CircleAlert } from "lucide-react";
+import { uploadFiles } from "@/app/utils/upload";
+import { Input } from "../ui/input";
+import FileUpload from "../FileUpload";
 
-export function Uploader() {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Do something with the files
-  }, []);
+export function Uploader({
+  className,
+  onDrop,
+}: {
+  className: string;
+  onDrop: (acceptedFiles: File[]) => void;
+}) {
+  // const [customname, setCustomName] = useState<string>("");
+  // const onDrop = useCallback(
+  //   (acceptedFiles: File[]) => {
+  //     uploadFiles({
+  //       acceptedFiles,
+  //       customName: customname,
+  //       onProgress: (progress: number) => {
+  //         // Handle upload progress
+  //         console.log("Upload progress:", progress);
+  //       },
+  //     });
+  //   },
+  //   [customname],
+  // );
 
   const rejectedFiles = useCallback((fileRejection: FileRejection[]) => {
     if (fileRejection.length) {
@@ -34,20 +54,37 @@ export function Uploader() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     onDropRejected: rejectedFiles,
-    maxFiles: 2,
-    maxSize: 10 * 1024 * 1024,
+    maxFiles: 1,
+    maxSize: 20 * 1024 * 1024,
     accept: {
       "video/*": [],
     },
   });
 
   return (
-    <>
+    <div className={className}>
       <Toaster
         position="bottom-right"
         icons={{ error: <CircleAlert /> }}
         richColors={true}
       />
+      {/* <Input
+        type="text"
+        value={customname}
+        onChange={(e) => setCustomName(e.target.value)}
+        placeholder="Enter custom file name (without extension)"
+      ></Input> */}
+      {/* <FileUpload
+        onSuccess={(file: File) => {
+          // Handle successful upload
+          console.log("Upload successful:", file);
+        }}
+        onProgress={(progress: number) => {
+          // Handle upload progress
+          console.log("Upload progress:", progress);
+        }}
+        fileType="video"
+      /> */}
       <Card
         className={cn(
           "relative h-64 w-full border-2 border-dashed transition-colors duration-200 ease-in-out",
@@ -66,6 +103,6 @@ export function Uploader() {
           )}
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 }

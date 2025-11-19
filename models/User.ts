@@ -9,21 +9,23 @@ export interface IUser {
     updatedAt?: Date;
 }
 
-const userSchema = new Schema <IUser>({
+const userSchema = new Schema<IUser>({
     email: { type: String, required: true },
     password: { type: String, required: true },
-    // _id: mongoose.Types.ObjectId,
-    },
+    _id: mongoose.Types.ObjectId,
+},
     {
         timestamps: true,
     },
 )
-// For NEXTjs because it have edge servers 
+// For NEXTjs because it have edge servers and it will throw error if we use normal way to create model
+// so we use this way to create model
 
-userSchema.pre("save", async function (next){
-    if(this.isModified("password")){
+
+userSchema.pre("save", async function (next) {
+    if (this.isModified("password")) {
         this.password = await bcrypt.hash(this.password, 10)
-    }   next();
+    } next();
 });
 
 

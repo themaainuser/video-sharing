@@ -170,7 +170,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
         <div className="mt-4">
           <div className="h-2.5 w-full overflow-hidden rounded-full bg-gray-200">
             <div
-              className="h-2.5 rounded-full bg-blue-600 transition-all duration-300 ease-out"
+              className="h-2.5 rounded-full bg-red-600 transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }} // Dynamic width based on progress state
             ></div>
           </div>

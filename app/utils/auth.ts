@@ -9,7 +9,6 @@ import dotenv from "dotenv"
 
 dotenv.config();
 
-
 export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({

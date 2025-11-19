@@ -4,8 +4,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDatabase } from "@/app/utils/db";
 import Video, { IVideo } from "@/models/Video";
-// import { getServerSession } from "next-auth";
-// import { authOptions } from "@/app/utils/auth";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/utils/auth";
 
 export async function GET() {
     try {
@@ -33,11 +33,11 @@ export async function POST(req: NextRequest) {
     console.log("Request Headers:", req.headers);
 
     try {
-        // const session = await getServerSession(authOptions);
-        // if (!session) {
-        //     return NextResponse.json({ error: "Unauthorized", },
-        //         { status: 401, })
-        // }
+        const session = await getServerSession(authOptions);
+        if (!session) {
+            return NextResponse.json({ error: "Unauthorized" },
+                { status: 401 })
+        }
         await connectDatabase()
         const body: IVideo = await req.json()
         console.log("Received POST request");
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
             !body.videoUrl
         ) {
             return NextResponse.json(
-                { error: "Missing Fields", },
+                { error: "Missing Fields" },
                 { status: 400 }
             )
         }
@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
     }
     catch (error) {
         return NextResponse.json({
-            error: "failed to create"
+            error: "Failed to create video",
         }, { status: 500 });
     }
 }

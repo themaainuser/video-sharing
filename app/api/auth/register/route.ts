@@ -16,11 +16,10 @@ export async function POST(req: NextRequest) {
         const existingUser = await User.findOne({ email })
         if (existingUser) {
             return NextResponse.json(
-                { error: "User already exists" },
+                { error: "User already Registered" },
                 { status: 400 }
             )
         }
-
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({
             email,
@@ -28,7 +27,8 @@ export async function POST(req: NextRequest) {
         })
         return NextResponse.json({
             email: user.email,
-        }, { status: 201 })
+        }, { status: 201, statusText: "User Registered Successfully" })
+
     } catch (error) {
         console.log(error);
         throw new Error("Internal server error");

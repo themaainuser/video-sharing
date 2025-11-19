@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Props {
   user: {
@@ -9,7 +11,11 @@ interface Props {
 }
 
 export default function UserAvatar({ user }: Props) {
+  const router = useRouter();
   const fallback = user?.name?.charAt(0) || user?.email?.charAt(0) || "U";
+  const redirectProfile = () => {
+    router.push("/profile");
+  };
 
   return (
     <div className="flex items-center">
@@ -26,7 +32,12 @@ export default function UserAvatar({ user }: Props) {
           {fallback}
         </div>
       )}
-      <span className="text-sm font-medium">{user?.name || user?.email}</span>
+      <button
+        className="cursor-pointer text-sm font-medium"
+        onClick={redirectProfile}
+      >
+        {user?.name || user?.email}
+      </button>
     </div>
   );
 }

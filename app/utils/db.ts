@@ -32,7 +32,9 @@ export async function connectDatabase() {
         cached.conn = await cached.promise
     } catch (error) {
         cached.promise = null;
-        console.log(error)
+        return Response.json({
+            error: "Failed to connect to database",
+        }, { status: 500 }) 
     }
     return cached.conn;
 }

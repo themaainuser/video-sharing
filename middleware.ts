@@ -12,23 +12,14 @@ export default withAuth(
                     pathname.startsWith("/api/auth") ||
                     pathname === "/login" ||
                     pathname === "/register" ||
+                    pathname === "/video" ||
                     pathname === "/"
                 ) { return true; }
                 if (pathname === "/" || pathname === "/api/videos") {
                     return true;
                 }
-                // console.log(`middleware log of token: ${token} `)
                 return !!token;
             }
-            // authorized({ req, token }) {
-            //     console.log(req.nextUrl.pathname);
-            //     if (req.nextUrl.pathname.startsWith("/admin")) {
-            //         if (token?.userRole !== "admin") {
-            //             return false;
-            //         }
-            //     }
-            //     return true;
-            // }
         }
     }
 )

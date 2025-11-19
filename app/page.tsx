@@ -3,13 +3,22 @@
 import { buildSrc, Video } from "@imagekit/next";
 import { useSession, signIn } from "next-auth/react";
 import { apiClient } from "./utils/api-client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { IVideo } from "@/models/Video";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 export default function Home() {
   const { data: session, status } = useSession();
   const [videos, setVideos] = useState<IVideo[]>([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/api/auth/signin");
+    }
+  }, [status, router]);
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -55,7 +64,7 @@ export default function Home() {
                     transition={{
                       duration: 0.35,
                       // delay: index * 0.2,
-                      delay: index * 0.12,
+                      // delay: index * 0.12,
                       ease: "easeInOut",
                     }}
                     key={video._id?.toString() || index}
@@ -86,9 +95,10 @@ export default function Home() {
           )}
         </>
       ) : (
-        <div className="text-center text-4xl text-red-500">
-          <p>You are not authorised for this page</p>
-          <button onClick={async () => await signIn()}>Sign in</button>
+        <div className="flex h-screen items-center justify-center text-center text-4xl text-red-500">
+          <Suspense>
+            <Loader2 className="animate-spin" />
+          </Suspense>
         </div>
       )}
     </div>
