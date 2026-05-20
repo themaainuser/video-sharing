@@ -21,7 +21,6 @@ const userSchema = new Schema<IUser>({
 // For NEXTjs because it have edge servers and it will throw error if we use normal way to create model
 // so we use this way to create model
 
-
 userSchema.pre("save", async function (next) {
     if (this.isModified("password")) {
         this.password = await bcrypt.hash(this.password, 10)
