@@ -19,7 +19,7 @@ type ComponentType = {
 //     <svg
 //       aria-label={ariaLabel}
 //       width={width}
-//       height={height}
+//       height={height}S
 //       xmlns={xmlns}
 //       viewBox={viewBox}
 //     >
