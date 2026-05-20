@@ -1,12 +1,11 @@
 import Link from "next/link";
 import NavigationLinks from "./NavigationLinks";
-import AuthButtons from "./AuthButtons";
 import UserAvatar from "./UserAvatar";
 
 interface Props {
   pathname: string;
   isAuthenticated: boolean;
-  session: any;
+  session: any;//eslint-disable-line @typescript-eslint/no-explicit-any
   onSignOut: () => void;
   onClose: () => void;
 }

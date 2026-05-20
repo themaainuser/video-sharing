@@ -6,9 +6,6 @@ import { Card, CardContent } from "../ui/card";
 import { cn } from "@/lib/utils";
 import { Toaster, toast } from "sonner";
 import { CircleAlert } from "lucide-react";
-import { uploadFiles } from "@/app/utils/upload";
-import { Input } from "../ui/input";
-import FileUpload from "../FileUpload";
 
 export function Uploader({
   className,
@@ -97,7 +94,7 @@ export function Uploader({
             <p>Drop the files here ...</p>
           ) : (
             <div className="flex h-full w-full flex-col items-center justify-center gap-y-3">
-              <p>Drag 'n' drop some files here, or click to select files</p>
+              <p>Drag n drop some files here, or click to select files</p>
               <Button>Upload</Button>
             </div>
           )}

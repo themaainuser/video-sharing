@@ -10,7 +10,8 @@ import MobileMenu from "./MobileMenu";
 import { Container } from "../container";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 
-export default function Header({ className }: { className?: string }) {
+export default function Header() {
+// export default function Header({ className }: { className?: string }) {
   const { data: session, status } = useSession();
   const pathname = usePathname();
   const router = useRouter();
