@@ -1,7 +1,7 @@
 "use client";
 
 import { buildSrc, Video } from "@imagekit/next";
-import { useSession, signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { apiClient } from "./utils/api-client";
 import { Suspense, useEffect, useState } from "react";
 import { IVideo } from "@/models/Video";

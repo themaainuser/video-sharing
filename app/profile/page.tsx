@@ -32,7 +32,7 @@ const Profile = () => {
   }, [status, session]);
 
   const updateEmail = async (updatedEmail: string) => {
-    const user = await User.findOneAndUpdate(
+    const _user = await User.findOneAndUpdate(
       { email: userData.email },
       { email: updatedEmail },
     );

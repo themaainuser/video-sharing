@@ -3,7 +3,7 @@ import UserAvatar from "./UserAvatar";
 
 interface Props {
   status: "authenticated" | "unauthenticated" | "loading";
-  session: any;
+  session: any; //@typescript-eslint/no-explicit-any
   onSignOut: () => void;
 }
 
