@@ -7,8 +7,8 @@ import { Button } from "../components/ui/button";
 import User from "@/models/User";
 
 const Profile = () => {
-  const { data: session, status } = useSession(); //eslint-disable-line @typescript-eslint/no-explicit-any
-  const [userData, setUserData] = useState<any>(null);
+  const { data: session, status } = useSession(); 
+  const [userData, setUserData] = useState<any>(null);//eslint-disable-line @typescript-eslint/no-explicit-any
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -33,7 +33,7 @@ const Profile = () => {
 
   const updateEmail = async (updatedEmail: string) => {
     const _user = await User.findOneAndUpdate( //eslint-disable-line @typescript-eslint/no-unused-vars
-      { email: userData.email },
+      { email: userData?.email as string },
       { email: updatedEmail },
     );
   };
@@ -46,7 +46,7 @@ const Profile = () => {
           {status === "loading" && <p>Loading session...</p>}
           {status === "unauthenticated" && <p>You are not logged in.</p>}
           {status === "authenticated" && (
-            <div>{userData ? userData.email : null}</div>
+            <div>{userData ? userData?.email as string : null}</div>
           )}
         </div>
       </Container>

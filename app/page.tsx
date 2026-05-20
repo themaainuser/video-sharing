@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
 export default function Home() {
-  const { data: session, status } = useSession(); //eslint-disable-line @typescript-eslint/no-explicit-any
+  const { data: session, status } = useSession();
   const [videos, setVideos] = useState<IVideo[]>([]);
   const router = useRouter();
 

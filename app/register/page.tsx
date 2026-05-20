@@ -36,7 +36,7 @@ const RegisterPage = () => {
       console.error(err);
     }
   };
-  // react-ruery
+  // react-query
   // debounce, error, loading
   return (
     <div>
