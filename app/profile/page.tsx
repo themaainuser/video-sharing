@@ -7,7 +7,7 @@ import { Button } from "../components/ui/button";
 import User from "@/models/User";
 
 const Profile = () => {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession(); //eslint-disable-line @typescript-eslint/no-explicit-any
   const [userData, setUserData] = useState<any>(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Profile = () => {
   }, [status, session]);
 
   const updateEmail = async (updatedEmail: string) => {
-    const _user = await User.findOneAndUpdate(
+    const _user = await User.findOneAndUpdate( //eslint-disable-line @typescript-eslint/no-unused-vars
       { email: userData.email },
       { email: updatedEmail },
     );

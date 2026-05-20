@@ -4,7 +4,8 @@ import { Github, Star } from "lucide-react";
 import { Colors, Liquid } from "../components/ui/liquid-gradient";
 import { useMediaQuery } from "../hooks/use-media-query";
 
-type _ColorKey =
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type _ColorKey = 
   | "color1"
   | "color2"
   | "color3"
@@ -44,6 +45,7 @@ const COLORS: Colors = {
 };
 const GitHubButton: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const _isDesktop = useMediaQuery("(min-width: 1280px)");
 
   return (
